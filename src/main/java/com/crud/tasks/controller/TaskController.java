@@ -5,10 +5,12 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +45,9 @@ public class TaskController {
         return new TaskDto(1L, "Edited test title", "Test content");
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createTask")
+    @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTask(TaskDto taskDto) {
-
+        Task task = taskMapper.mapToTask(taskDto);
+        service.saveTask(task);
     }
 }
