@@ -29,11 +29,12 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
-    public List<TaskDto> getTasks() { return new ArrayList<>(); }
-/*    public List<TaskDto> getTasks() {
+    public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();
         return taskMapper.mapToTaskDtoList(tasks);
-    }           */
+    }
+
+//public List<TaskDto> getTasks() { return new ArrayList<>(); }
 
 /*    @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(Long taskId) {
