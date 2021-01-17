@@ -13,18 +13,18 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreatedTrelloCard {
 
-    @JsonProperty("id")
-    private String id;
-
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("shortUrl")
     private String shortUrl;
 
-    @JsonProperty("trello")
-    private List<Trello> trello;
+    @JsonProperty("id")
+    private String id;
 
-/*    @JsonProperty("badges")
-    private List<Badges> badges;            */
+    @JsonProperty("badge")
+    private Badges badge;
 }
+
+
+

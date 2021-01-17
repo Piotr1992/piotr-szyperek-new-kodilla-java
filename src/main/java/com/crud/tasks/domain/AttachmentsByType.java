@@ -12,15 +12,11 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AttachmentsByType {
+/*    @JsonProperty("id")
+    private String id;      */
 
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("votes")
-    private String votes;
-
-//    @JsonProperty("trello")
-//    private List<Trello> trello;
+    @JsonProperty("trello")
+    private List<Trello> trello;
 }
 
 

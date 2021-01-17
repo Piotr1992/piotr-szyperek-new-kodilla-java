@@ -1,5 +1,6 @@
 package com.crud.tasks.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -10,8 +11,12 @@ public class TrelloCardDto {
     private String description;
     private String pos;
     private String listId;
-    private Trello trello;
-//    private String id;
 //    private Trello trello;
-//    private Badges badges;
+//    @JsonProperty("id")
+    private String id;
+//    private Trello trello;
+//    private Badges badge;
+//    @JsonProperty("badges")
+    private Badges badge;
+//    @JsonProperty("badge");
 }

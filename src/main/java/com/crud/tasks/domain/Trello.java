@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Trello {
-    @JsonProperty("id")
-    private String id;
+/*    @JsonProperty("id")
+    private String id;      */
 
     @JsonProperty("board")
     private String board;
