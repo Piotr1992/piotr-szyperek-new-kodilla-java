@@ -31,7 +31,7 @@ public class TrelloController {
 
 
 
-    @GetMapping("getTrelloBoards")
+/*    @GetMapping("getTrelloBoards")
     public void getTrelloBoards() {
         List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
@@ -47,6 +47,13 @@ public class TrelloController {
             });
 
         });
+    }                   */
+
+
+
+    @GetMapping("getTrelloBoards")
+    public List<TrelloBoardDto> getTrelloBoards() {
+        return trelloClient.getTrelloBoards();
     }
 
 
