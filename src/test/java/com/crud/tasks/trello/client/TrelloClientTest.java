@@ -63,6 +63,11 @@ class TrelloClientTest {
         assertEquals("http://test.com", newCard.getShortUrl());             */
     }
 
+    public List shouldReturnNull(URI uri) {
+        TrelloCardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloCardDto[].class);
+        return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
+    }
+
     @Test
     public void shouldReturnEmptyList() throws URISyntaxException {
         //Given
@@ -76,7 +81,6 @@ class TrelloClientTest {
                 "test_id"
         );
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
-        TrelloCardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloCardDto[].class);
         CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
                 "1",
                 "test task",
@@ -86,7 +90,7 @@ class TrelloClientTest {
 
         // When
         CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
-        List<TrelloCardDto> shouldReturnEmptyList = Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
+        List<TrelloCardDto> shouldReturnEmptyList = shouldReturnNull(uri);
 
         //Then
         assertNotNull(newCard);
