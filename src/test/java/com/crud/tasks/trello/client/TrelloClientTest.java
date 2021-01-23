@@ -1,7 +1,6 @@
 package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.CreatedTrelloCard;
-import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.config.TrelloConfig;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,6 @@ import java.util.List;
 
 import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,14 +64,24 @@ class TrelloClientTest {
     @Test
     public void shouldReturnEmptyList() throws URISyntaxException {
         //Given
+        when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
+        when(trelloConfig.getTrelloAppKey()).thenReturn("test");
+        when(trelloConfig.getTrelloToken()).thenReturn("test");
+        TrelloCardDto trelloCardDto = new TrelloCardDto(
+                "Test task",
+                "Test Description",
+                "top",
+                "test_id"
+        );
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
-        TrelloBoardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloBoardDto[].class);
+        TrelloCardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloCardDto[].class);
 
         //When
-        List<TrelloBoardDto> shouldReturnEmptyList = Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
+        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
+        List<TrelloCardDto> shouldReturnEmptyList = Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
 
         //Then
-        assertNotNull(shouldReturnEmptyList);
+        assertEquals(null, newCard);
         assertEquals(0, shouldReturnEmptyList.size());
     }
 
