@@ -10,7 +10,6 @@ public class TrelloCardDto {
     private String description;
     private String pos;
     private String listId;
-/*    private String id;
-    private Badges badges;          */
-
+    //    private String id;
+    //    private Badges badges;
 }

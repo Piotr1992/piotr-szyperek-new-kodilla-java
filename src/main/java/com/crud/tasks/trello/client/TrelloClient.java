@@ -5,10 +5,8 @@ import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.config.TrelloConfig;
 import lombok.RequiredArgsConstructor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +15,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.Optional.ofNullable;
 
 @Component
 @RequiredArgsConstructor
@@ -65,5 +65,10 @@ public class TrelloClient {
                 .toUri();
 
         return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
+    }
+
+    public List shouldReturnNull(URI uri) {
+        TrelloCardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloCardDto[].class);
+        return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
     }
 }

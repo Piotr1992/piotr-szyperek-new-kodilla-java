@@ -12,10 +12,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -57,15 +55,9 @@ class TrelloClientTest {
         CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
 
         // Then
-        assertEquals(null, newCard);
-/*        assertEquals("1", newCard.getId());
+        assertEquals("1", newCard.getId());
         assertEquals("test task", newCard.getName());
-        assertEquals("http://test.com", newCard.getShortUrl());             */
-    }
-
-    public List shouldReturnNull(URI uri) {
-        TrelloCardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloCardDto[].class);
-        return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
+        assertEquals("http://test.com", newCard.getShortUrl());
     }
 
     @Test
@@ -88,9 +80,9 @@ class TrelloClientTest {
         );
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
 
-        // When
+        //When
         CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
-        List<TrelloCardDto> shouldReturnEmptyList = shouldReturnNull(uri);
+        List<TrelloCardDto> shouldReturnEmptyList = trelloClient.shouldReturnNull(uri);
 
         //Then
         assertNotNull(newCard);
