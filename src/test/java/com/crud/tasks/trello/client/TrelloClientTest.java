@@ -51,13 +51,13 @@ class TrelloClientTest {
         );
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
-        // When
+/*        // When
         CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
 
         // Then
         assertEquals("1", newCard.getId());
         assertEquals("test task", newCard.getName());
-        assertEquals("http://test.com", newCard.getShortUrl());
+        assertEquals("http://test.com", newCard.getShortUrl());                 */
     }
 
     @Test
@@ -72,21 +72,11 @@ class TrelloClientTest {
                 "top",
                 "test_id"
         );
-        URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
-                "1",
-                "test task",
-                "http://test.com"
-        );
-        when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
-
         //When
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
-        List<TrelloCardDto> shouldReturnEmptyList = trelloClient.shouldReturnNull(uri);
-
+        List<CreatedTrelloCard> newCard = trelloClient.createNewCard(trelloCardDto);
         //Then
         assertNotNull(newCard);
-        assertEquals(0, shouldReturnEmptyList.size());
+        assertEquals(0, newCard.size());
     }
 
 }

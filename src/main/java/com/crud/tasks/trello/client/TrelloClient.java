@@ -1,6 +1,5 @@
 package com.crud.tasks.trello.client;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.config.TrelloConfig;
@@ -13,7 +12,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
@@ -39,7 +41,7 @@ public class TrelloClient {
 
         try {
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-            return Optional.ofNullable(boardsResponse)
+            return ofNullable(boardsResponse)
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList())
                     .stream()
@@ -52,7 +54,7 @@ public class TrelloClient {
         }
     }
 
-    public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
+    public List createNewCard(TrelloCardDto trelloCardDto) {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/cards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
@@ -64,11 +66,10 @@ public class TrelloClient {
                 .encode()
                 .toUri();
 
-        return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
-    }
+        TrelloCardDto[] boardsResponse = restTemplate.getForObject(url, TrelloCardDto[].class);
 
-    public List shouldReturnNull(URI uri) {
-        TrelloCardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloCardDto[].class);
         return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
+
+//        return restTemplate.getForObject(url, CreatedTrelloCard.class);
     }
 }
