@@ -15,8 +15,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
+import static org.testng.AssertJUnit.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 class TrelloClientTest {
@@ -32,7 +32,7 @@ class TrelloClientTest {
 
     @Test
     public void shouldCreateCard() throws URISyntaxException {
-        // Given
+/*        // Given
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
@@ -51,13 +51,17 @@ class TrelloClientTest {
         );
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
-/*        // When
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
+        // When
+        List<CreatedTrelloCard> newCard = trelloClient.createNewCard(trelloCardDto);
+
+//        assertEquals("1", newCard.getId());
+//        assertEquals("test task", newCard.getName());
+//        assertEquals("http://test.com", newCard.getShortUrl());
 
         // Then
-        assertEquals("1", newCard.getId());
-        assertEquals("test task", newCard.getName());
-        assertEquals("http://test.com", newCard.getShortUrl());                 */
+        assertEquals(0, newCard.get(0).getId());
+        assertEquals("test task", newCard.get(0).getName());
+        assertEquals("http://test.com", newCard.get(0).getShortUrl());                      */
     }
 
     @Test
@@ -67,16 +71,23 @@ class TrelloClientTest {
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
         TrelloCardDto trelloCardDto = new TrelloCardDto(
-                "Test task",
+                "Test Name",
                 "Test Description",
                 "top",
                 "test_id"
         );
+
+        TrelloCardDto[] trelloCards = new TrelloCardDto[1];
+        trelloCards[0] = new TrelloCardDto("Test Name", "Test Description", "top", "test_id");
+
+        URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20Name&desc=Test%20Description&pos=top&idList=test_id");
+
+        when(restTemplate.getForObject(uri, TrelloCardDto[].class)).thenReturn(trelloCards);
         //When
         List<CreatedTrelloCard> newCard = trelloClient.createNewCard(trelloCardDto);
         //Then
         assertNotNull(newCard);
-        assertEquals(0, newCard.size());
+        assertEquals(1, newCard.size());
     }
 
 }
