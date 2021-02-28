@@ -65,13 +65,10 @@ public class TrelloClient {
                 .build()
                 .encode()
                 .toUri();
-
         try {
             TrelloCardDto[] boardsResponse = restTemplate.getForObject(url, TrelloCardDto[].class);
             return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloCardDto[0]));
         } catch (RestClientException e) {
-//        return restTemplate.getForObject(url, CreatedTrelloCard.class);
-            LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
         }
     }
