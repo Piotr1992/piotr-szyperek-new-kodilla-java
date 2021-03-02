@@ -23,13 +23,18 @@ public class TrelloController {
         return trelloClient.getTrelloBoards();
     }
 
-/*    @PostMapping("createTrelloCard")
-    public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return trelloClient.createNewCard(trelloCardDto);
-    }                   */
-
-    @GetMapping("createTrelloCard")
-    public List<CreatedTrelloCard> createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+    @PostMapping("createTrelloCard")
+    public CreatedTrelloCard postTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloClient.createNewCard(trelloCardDto);
     }
+
+/*    @PutMapping("updateTrelloCard")
+    public CreatedTrelloCard updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return new CreatedTrelloCard(1L, "safd", "dsag");
+    }
+
+    @GetMapping("getTrelloCard")
+    public CreatedTrelloCard getTrelloCard(Long cardId) {
+        return new CreatedTrelloCard(1L, "", "");
+    }           */
 }
