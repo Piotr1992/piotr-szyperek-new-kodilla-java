@@ -16,9 +16,9 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 //import org.springframework.http.ResponseEntity;
 //import java.util.ArrayList;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task")
+@CrossOrigin("*")
 public class TaskController {
 
     private final DbService service;
@@ -50,7 +50,7 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateTask")
-    public TaskDto updateTask(TaskDto taskDto) {
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
         return taskMapper.mapToTaskDto(savedTask);
