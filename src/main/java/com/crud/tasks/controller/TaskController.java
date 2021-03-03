@@ -14,9 +14,9 @@ import java.util.List;
 //import org.springframework.http.ResponseEntity;
 //import java.util.ArrayList;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/task")
-@CrossOrigin("*")
 public class TaskController {
 
     private final DbService service;
@@ -28,7 +28,7 @@ public class TaskController {
         this.taskMapper = taskMapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getTasks")
+    @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();
         return taskMapper.mapToTaskDtoList(tasks);
