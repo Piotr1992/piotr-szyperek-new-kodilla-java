@@ -16,7 +16,7 @@ import java.util.List;
 //import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/v1/task")
+@RequestMapping("/v1/task/")
 @CrossOrigin("*")
 public class TaskController {
 
