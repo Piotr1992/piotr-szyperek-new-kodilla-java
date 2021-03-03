@@ -4,7 +4,7 @@ import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +16,19 @@ import java.util.List;
 //import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/v1/task/")
+@RequestMapping("/v1/task")
+@RequiredArgsConstructor
 @CrossOrigin("*")
 public class TaskController {
 
     private final DbService service;
     private final TaskMapper taskMapper;
 
-    @Autowired
+/*    @Autowired
     public TaskController(DbService service, TaskMapper taskMapper) {
         this.service = service;
         this.taskMapper = taskMapper;
-    }
+    }               */
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
