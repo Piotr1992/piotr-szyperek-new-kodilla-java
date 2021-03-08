@@ -9,8 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import java.util.Optional;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -26,37 +24,19 @@ class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail() {
         //Given
-        Mail mail = new Mail("test@test.com", "", "Test", "Test Message");
-//        Mail mail = new Mail("test@test.com", "testCc@testCc.com", "Test", "Test Message");
+        Mail mail = new Mail.MailBuilder()
+                .toMail("test@test.com")
+                .ccTo(null)
+                .toSubject("Test")
+                .toMessage("Test Message")
+                .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        Optional<Mail> optionalMail = Optional.of(mail)
-                .filter(a->a.getToCc().isEmpty());
-
-        if( optionalMail.isPresent() ) {
-            System.out.println("IF");
-            mailMessage.setTo(mail.getMailTo());
-//            mailMessage.setCc(mail.getToCc());
-            mailMessage.setSubject(mail.getSubject());
-            mailMessage.setText(mail.getMessage());
-        } else {
-            System.out.println("ELSE");
-            mailMessage.setTo(mail.getMailTo());
-            mailMessage.setCc(mail.getToCc());
-            mailMessage.setSubject(mail.getSubject());
-            mailMessage.setText(mail.getMessage());
-        }
-
-/*        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setCc(mail.getToCc());
+        mailMessage.setTo(mail.getMail());
+        mailMessage.setCc(mail.getCC());
         mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());         */
-
-        System.out.println("-> " + mail.getMailTo());
-        System.out.println("-> " + mail.getToCc());
-        System.out.println("-> " + mail.getSubject());
-        System.out.println("-> " + mail.getMessage());
+        mailMessage.setText(mail.getMessage());
 
         //When
         simpleEmailService.send(mail);
@@ -64,4 +44,5 @@ class SimpleEmailServiceTest {
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);
     }
+
 }
