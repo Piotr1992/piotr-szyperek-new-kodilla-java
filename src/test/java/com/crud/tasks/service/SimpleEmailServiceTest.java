@@ -9,8 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import java.util.Optional;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -35,16 +33,10 @@ class SimpleEmailServiceTest {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        Optional<SimpleMailMessage> optionalMail = Optional.ofNullable(mailMessage);
-
-        if ( optionalMail.isPresent() ) {
-
-            mailMessage.setTo(mail.getMail());
-            mailMessage.setCc(mail.getCC());
-            mailMessage.setSubject(mail.getSubject());
-            mailMessage.setText(mail.getMessage());
-
-        }
+        mailMessage.setTo(mail.getMail());
+        mailMessage.setCc(mail.getCC());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
 
         //When
         simpleEmailService.send(mail);
