@@ -26,7 +26,7 @@ class SimpleEmailServiceTest {
         //Given
         Mail mail = new Mail.MailBuilder()
                 .toMail("test@test.com")
-                .ccTo(null)
+                .ccTo("")
                 .toSubject("Test")
                 .toMessage("Test Message")
                 .build();
@@ -34,7 +34,6 @@ class SimpleEmailServiceTest {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setTo(mail.getMail());
-        mailMessage.setCc();
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 
