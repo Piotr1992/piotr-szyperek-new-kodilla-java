@@ -27,7 +27,7 @@ class SimpleEmailServiceTest {
         Mail mail = new Mail.MailBuilder()
                 .toMail("test@test.com")
                 .ccTo("")
-                .toSubject("Test")
+                .toSubject("Test Subject")
                 .toMessage("Test Message")
                 .build();
 
