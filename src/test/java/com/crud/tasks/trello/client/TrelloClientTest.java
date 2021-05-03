@@ -36,15 +36,15 @@ class TrelloClientTest {
         );
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
 
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
+        CreatedTrelloCardDto createdTrelloCard = new CreatedTrelloCardDto(
                 "1",
                 "test task",
                 "http://test.com"
         );
 
-        when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
+        when(restTemplate.postForObject(uri, null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCard);
         // When
-        List<CreatedTrelloCard> newCard = trelloClient.createNewCard(trelloCardDto);
+        List<CreatedTrelloCardDto> newCard = trelloClient.createNewCard(trelloCardDto);
 
 //        assertEquals("1", newCard.getId());
 //        assertEquals("test task", newCard.getName());
@@ -72,7 +72,7 @@ class TrelloClientTest {
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20Name&desc=Test%20Description&pos=top&idList=test_id");
         when(restTemplate.getForObject(uri, TrelloCardDto[].class)).thenReturn(trelloCards);
         //When
-        List<CreatedTrelloCard> newCard = trelloClient.createNewCard(trelloCardDto);
+        List<CreatedTrelloCardDto> newCard = trelloClient.createNewCard(trelloCardDto);
         //Then
         assertNotNull(newCard);
         assertEquals(0, newCard.size());
