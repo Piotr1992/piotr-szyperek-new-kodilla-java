@@ -24,6 +24,11 @@ public class TaskController {
         this.taskMapper = taskMapper;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "mail")
+    public String getMail() {
+        return "mail/created-trello-card-mail";
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();

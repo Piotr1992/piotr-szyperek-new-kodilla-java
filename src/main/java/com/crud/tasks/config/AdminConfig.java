@@ -9,4 +9,22 @@ import org.springframework.stereotype.Component;
 public class AdminConfig {
     @Value("${admin.mail}")
     private String adminMail;
+
+    @Value("Ustalenie terminu spotkania biznesowego.")
+    private String previewMessage;
+
+    @Value("Ewa Nowak")
+    private String adminName;
+
+    @Value("Jan Kowalski")
+    private String recipient;
+
+    @Value("Wiadomość .... !")
+    private String message;
+
+    @Value("Pozdrawiam Janek")
+    private String goodbye;
+
+    @Value("Wrażliwe dane firmy!")
+    private String companyDetails;
 }

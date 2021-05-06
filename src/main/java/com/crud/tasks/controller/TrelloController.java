@@ -1,12 +1,16 @@
 
 package com.crud.tasks.controller;
 
+import com.crud.tasks.domain.CreatedTrelloCardDto;
+import com.crud.tasks.domain.TrelloBoardDto;
+import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/trello")
@@ -22,30 +26,30 @@ public class TrelloController {
         return trelloFacade.fetchTrelloBoards();
     }           */
 
-/*    @PostMapping("createTrelloCard")
+    @PostMapping("createTrelloCard")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloFacade.createCard(trelloCardDto);
-    }           */
+    }
 
-/*    private final TrelloService trelloService;
+    private final TrelloService trelloService;
 
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloService.fetchTrelloBoards();
     }
 
-    @PostMapping("createTrelloCard")
+/*    @PostMapping("createTrelloCard")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloService.createTrelloCard(trelloCardDto);
     }               */
 
-/*    @PutMapping("updateTrelloCard")
+    @PutMapping("updateTrelloCard")
     public CreatedTrelloCardDto updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return new CreatedTrelloCardDto(1L, "safd", "dsag");
+        return new CreatedTrelloCardDto("1", "first-name", "wp.pl");
     }
 
     @GetMapping("getTrelloCard")
     public CreatedTrelloCardDto getTrelloCard(Long cardId) {
-        return new CreatedTrelloCardDto(1L, "", "");
-    }           */
+        return new CreatedTrelloCardDto("2", "second-name", "o2.pl");
+    }
 }
