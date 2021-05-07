@@ -5,7 +5,6 @@ import com.crud.tasks.domain.Mail;
 import com.crud.tasks.repository.TaskRepository;
 import com.crud.tasks.service.SimpleEmailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,10 +15,13 @@ public class EmailScheduler {
     private final TaskRepository taskRepository;
     private final AdminConfig adminConfig;
 
-    private static final String SUBJECT = "Tasks: Once a day email";
+//    private static final String SUBJECT = "Tasks: Once a day email";
+    private static final String SUBJECT = "";
 
-//    @Scheduled(cron = "0 0 10 * * *")
-    @Scheduled(fixedDelay = 10000)
+
+
+//    @Scheduled(fixedDelay = 5000)
+//    @Scheduled(cron = "3 * * * * *")
     public void sendInformationEmail() {
         long size = taskRepository.count();
         simpleEmailService.send(
@@ -31,5 +33,6 @@ public class EmailScheduler {
             )
         );
     }
+
 
 }

@@ -13,7 +13,7 @@ public class AdminConfig {
     @Value("Ustalenie terminu spotkania biznesowego.")
     private String previewMessage;
 
-    @Value("Ewa Nowak")
+    @Value("${admin.name}")
     private String adminName;
 
     @Value("Jan Kowalski")
