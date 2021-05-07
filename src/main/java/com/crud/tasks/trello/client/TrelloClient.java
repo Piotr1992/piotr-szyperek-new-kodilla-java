@@ -47,6 +47,7 @@ public class TrelloClient {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
         }               */
+
         return Collections.emptyList();
     }
 
@@ -62,6 +63,6 @@ public class TrelloClient {
                 .encode()
                 .toUri();
 
-        return restTemplate.postForObject(url, null, CreatedTrelloCardDto.class);
+        return restTemplate.postForObject(url, "", CreatedTrelloCardDto.class);
     }
 }

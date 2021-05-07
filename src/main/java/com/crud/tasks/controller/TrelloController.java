@@ -2,7 +2,6 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.CreatedTrelloCardDto;
-import com.crud.tasks.domain.Mail;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.SimpleEmailService;
@@ -30,20 +29,20 @@ public class TrelloController {
         return trelloFacade.fetchTrelloBoards();
     }           */
 
-    @PostMapping("createTrelloCard")
+/*    @PostMapping("createTrelloCard")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
 
         simpleEmailService.send(
             new Mail(
-                    "szyperekpiotr1992@gmail.com",
-                    "Recipient",
-                    "Subject",
-                    "Message"
+          "szyperekpiotr1992@gmail.com",
+           "Recipient",
+         "Subject",
+        "Message"
             )
         );
 
         return trelloFacade.createCard(trelloCardDto);
-    }
+    }       */
 
     private final TrelloService trelloService;
 
@@ -52,10 +51,10 @@ public class TrelloController {
         return trelloService.fetchTrelloBoards();
     }
 
-/*    @PostMapping("createTrelloCard")
+    @PostMapping("createTrelloCard")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloService.createTrelloCard(trelloCardDto);
-    }               */
+    }
 
     @PutMapping("updateTrelloCard")
     public CreatedTrelloCardDto updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
