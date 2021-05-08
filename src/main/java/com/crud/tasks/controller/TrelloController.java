@@ -7,7 +7,6 @@ import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.SimpleEmailService;
 import com.crud.tasks.trello.client.TrelloClient;
-import com.crud.tasks.trello.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +19,10 @@ import java.util.List;
 @CrossOrigin("*")
 public class TrelloController {
 
-    @Autowired
-    private final TrelloFacade trelloFacade;
+/*    @Autowired
+    private final TrelloFacade trelloFacade;        */
 
+    @Autowired
     private final TrelloClient trelloClient;
 
     private final SimpleEmailService simpleEmailService;
