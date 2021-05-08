@@ -1,7 +1,7 @@
 
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.client.TrelloClient;
@@ -24,17 +24,17 @@ public class TrelloController {
     }
 
     @PostMapping("createTrelloCard")
-    public CreatedTrelloCard postTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCardDto postTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloClient.createNewCard(trelloCardDto);
     }
 
-/*    @PutMapping("updateTrelloCard")
-    public CreatedTrelloCard updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return new CreatedTrelloCard(1L, "safd", "dsag");
+    @PutMapping("updateTrelloCard")
+    public CreatedTrelloCardDto updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return new CreatedTrelloCardDto();
     }
 
     @GetMapping("getTrelloCard")
-    public CreatedTrelloCard getTrelloCard(Long cardId) {
-        return new CreatedTrelloCard(1L, "", "");
-    }           */
+    public CreatedTrelloCardDto getTrelloCard(Long cardId) {
+        return new CreatedTrelloCardDto();
+    }
 }
