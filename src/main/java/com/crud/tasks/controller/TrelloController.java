@@ -33,8 +33,8 @@ public class TrelloController {
             new Mail(
                     "szyperekpiotr1992@gmail.com",
                     "Piotr Szyperek",
-                    "mnbvcxzasd",
-                    "dasf"
+                    "Subject",
+                    "Message"
                 )
         );
 
