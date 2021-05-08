@@ -28,7 +28,7 @@ public class TrelloController {
     }
 
     @PostMapping("createTrelloCard")
-    public CreatedTrelloCardDto postTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         simpleEmailService.send(
                 new Mail(
                         "szyperekpiotr1992@gmail.com",
