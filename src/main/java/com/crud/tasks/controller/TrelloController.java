@@ -6,8 +6,10 @@ import com.crud.tasks.domain.Mail;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.SimpleEmailService;
-import com.crud.tasks.trello.client.TrelloClient;
+import com.crud.tasks.service.TrelloService;
+import com.crud.tasks.trello.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,17 +20,19 @@ import java.util.List;
 @CrossOrigin("*")
 public class TrelloController {
 
-    private final TrelloClient trelloClient;
+    @Autowired
+    private final TrelloFacade trelloFacade;
 
     private final SimpleEmailService simpleEmailService;
 
-    @GetMapping("getTrelloBoards")
+/*    @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        return trelloClient.getTrelloBoards();
-    }
+        return trelloFacade.fetchTrelloBoards();
+    }           */
 
     @PostMapping("createTrelloCard")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+
         simpleEmailService.send(
                 new Mail(
                         "szyperekpiotr1992@gmail.com",
@@ -37,16 +41,29 @@ public class TrelloController {
                         "Message"
                 )
         );
-        return trelloClient.createNewCard(trelloCardDto);
+
+        return trelloFacade.createCard(trelloCardDto);
     }
 
-/*    @PutMapping("updateTrelloCard")
-    public CreatedTrelloCard updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return new CreatedTrelloCard(1L, "safd", "dsag");
+    private final TrelloService trelloService;
+
+    @GetMapping("getTrelloBoards")
+    public List<TrelloBoardDto> getTrelloBoards() {
+        return trelloService.fetchTrelloBoards();
+    }
+
+/*    @PostMapping("createTrelloCard")
+    public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return trelloService.createTrelloCard(trelloCardDto);
+    }               */
+
+    @PutMapping("updateTrelloCard")
+    public CreatedTrelloCardDto updateTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return new CreatedTrelloCardDto("1", "first-name", "wp.pl");
     }
 
     @GetMapping("getTrelloCard")
-    public CreatedTrelloCard getTrelloCard(Long cardId) {
-        return new CreatedTrelloCard(1L, "", "");
-    }           */
+    public CreatedTrelloCardDto getTrelloCard(Long cardId) {
+        return new CreatedTrelloCardDto("2", "second-name", "o2.pl");
+    }
 }
