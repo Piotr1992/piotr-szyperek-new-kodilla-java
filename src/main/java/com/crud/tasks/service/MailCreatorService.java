@@ -24,6 +24,8 @@ public class MailCreatorService {
         context.setVariable("button", "Visit website");
         context.setVariable("preview_message", adminConfig.getPreviewMessage());
         context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("show_button", false);
+        context.setVariable("is_friend", false);
         context.setVariable("recipient", adminConfig.getRecipient());
         context.setVariable("goodbye", adminConfig.getGoodbye());
         context.setVariable("companyDetails", adminConfig.getCompanyDetails());
