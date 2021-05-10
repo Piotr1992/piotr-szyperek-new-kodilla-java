@@ -14,23 +14,19 @@ public class EmailScheduler {
     private final SimpleEmailService simpleEmailService;
     private final TaskRepository taskRepository;
     private final AdminConfig adminConfig;
+    private static final String SUBJECT = "Tasks: Once a day email";
 
-//    private static final String SUBJECT = "Tasks: Once a day email";
-    private static final String SUBJECT = "";
-
-
-
-//    @Scheduled(fixedDelay = 5000)
+    //    @Scheduled(fixedDelay = 5000)
 //    @Scheduled(cron = "3 * * * * *")
     public void sendInformationEmail() {
         long size = taskRepository.count();
         simpleEmailService.send(
-            new Mail(
-                adminConfig.getAdminMail(),
-                "abcd",
-                SUBJECT,
-                "Currently in database you got: " + size + ( (size == 1) ? " task" : " tasks" )
-            )
+                new Mail(
+                        adminConfig.getAdminMail(),
+                        "abcd",
+                        SUBJECT,
+                        "Currently in database you got: " + size + ( (size == 1) ? " task" : " tasks" )
+                )
         );
     }
 

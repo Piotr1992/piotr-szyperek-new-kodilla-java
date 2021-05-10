@@ -8,12 +8,16 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Optional.ofNullable;
 
 @Component
 @RequiredArgsConstructor
@@ -34,21 +38,14 @@ public class TrelloClient {
                 .encode()
                 .toUri();
 
-/*        try {
+        try {
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-            return ofNullable(boardsResponse)
-                    .map(Arrays::asList)
-                    .orElse(Collections.emptyList())
-                    .stream()
-                    .filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
-                    .filter(p -> p.getName().contains("Kodilla"))
-                    .collect(Collectors.toList());
+            return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
-        }               */
+            return new ArrayList<>();
+        }
 
-        return Collections.emptyList();
     }
 
     public CreatedTrelloCardDto createNewCard(TrelloCardDto trelloCardDto) {
@@ -63,6 +60,6 @@ public class TrelloClient {
                 .encode()
                 .toUri();
 
-        return restTemplate.postForObject(url, "", CreatedTrelloCardDto.class);
+        return restTemplate.postForObject(url, null, CreatedTrelloCardDto.class);
     }
 }

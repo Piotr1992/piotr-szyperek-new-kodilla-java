@@ -43,7 +43,7 @@ public class TaskController {
         );
     }
 
-/*    @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
+    @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
     public TaskDto updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
@@ -54,5 +54,5 @@ public class TaskController {
     public void deleteTask(@RequestParam Long taskId) {
         service.deleteTask(taskId);
     }
-*/
+
 }

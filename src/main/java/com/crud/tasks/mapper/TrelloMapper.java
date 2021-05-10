@@ -1,32 +1,21 @@
 package com.crud.tasks.mapper;
 
-import com.crud.tasks.domain.*;
-import lombok.AllArgsConstructor;
+import com.crud.tasks.domain.TrelloCard;
+import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.domain.TrelloList;
+import com.crud.tasks.domain.TrelloListDto;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@AllArgsConstructor
+@Data
+@NoArgsConstructor
 @Component
 public class TrelloMapper {
-
-/*    public List<TrelloBoard> mapToBoards(final List<TrelloBoardDto> trelloBoardDto) {
-        return trelloBoardDto.stream()
-                .map(trelloBoard ->
-                        new TrelloBoard(trelloBoardDto.getId(), trelloBoard.getName(), mapToListDto(trelloBoards)))
-                .collect(toList());
-
-    }           */
-
-/*    public List<TrelloBoardDto> mapToBoardsDto(final List<TrelloBoard> trelloBoards) {
-        return trelloBoards.stream()
-                .map(trelloBoard ->
-                        new TrelloBoard(trelloBoard.getId(), trelloBoard.getName(), trelloBoard.getLists()))
-                .collect(toList());
-
-    }               */
 
     public List<TrelloList> mapToList(final List<TrelloListDto> trelloListDto) {
         return trelloListDto.stream()
