@@ -3,10 +3,14 @@ package com.crud.tasks.config;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import com.crud.tasks.repository.TaskRepository;
 
 @Component
 @Getter
 public class AdminConfig {
+
+    private TaskRepository taskRepository;
+
     @Value("${admin.mail}")
     private String adminMail;
 
@@ -19,7 +23,7 @@ public class AdminConfig {
     @Value("Jan Kowalski")
     private String recipient;
 
-    @Value("Wiadomość .... !")
+    @Value()
     private String message;
 
     @Value("Pozdrawiam Janek")
