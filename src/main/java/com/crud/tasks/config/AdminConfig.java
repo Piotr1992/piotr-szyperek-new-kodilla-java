@@ -23,7 +23,7 @@ public class AdminConfig {
     @Value("Jan Kowalski")
     private String recipient;
 
-    @Value()
+    @Value("")
     private String message;
 
     @Value("Pozdrawiam Janek")

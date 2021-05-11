@@ -16,35 +16,16 @@ public class EmailScheduler {
     private final TaskRepository taskRepository;
     private final AdminConfig adminConfig;
 
-    //    private static final String SUBJECT = "Tasks: Once a day email";
-    private static final String SUBJECT = "";
-
-
-
-    //    @Scheduled(fixedDelay = 1000)
+    @Scheduled(cron = "0 12 21 * * ?")
     public void sendInformationEmail() {
         long size = taskRepository.count();
         simpleEmailService.send(
-                new Mail(
-                        adminConfig.getAdminMail(),
-                        "abcd",
-                        SUBJECT,
-                        "Currently in database you got: " + size + ( (size == 1) ? " task" : " tasks" )
-                )
-        );
-    }
-
-    @Scheduled(fixedDelay = 1000)
-    public void sendInformationEmailOnceDay() {
-        long size = taskRepository.count();
-        simpleEmailService.sendOnceDay(
-                new Mail(
-                        adminConfig.getAdminMail(),
-                        adminConfig.getRecipient(),
-                        adminConfig.getPreviewMessage(),
-                        "Currently in database you got: " + size + ( (size == 1) ? " task" : " tasks"
-                        )
-                )
+            new Mail(
+                    adminConfig.getAdminMail(),
+                    adminConfig.getRecipient(),
+                    adminConfig.getPreviewMessage(),
+                    "Currently in database you got: " + size + ( (size == 1) ? " task" : " tasks" )
+            )
         );
     }
 

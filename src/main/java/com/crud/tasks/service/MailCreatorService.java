@@ -44,9 +44,9 @@ public class MailCreatorService {
 
     public String onceDayCountTasksEmail(String message) {
         List<String> functionality = new ArrayList<>();
-        functionality.add("You can manage your tasks");
-        functionality.add("Provides connection with Trello Account");
-        functionality.add("Application allows sending tasks to Trello");
+        functionality.add("to prepare template fo email");
+        functionality.add("sending an e-mail at a specified time");
+        functionality.add("e-mail display count tasks in database");
 
         Context context = new Context();
         context.setVariable("message", message);
