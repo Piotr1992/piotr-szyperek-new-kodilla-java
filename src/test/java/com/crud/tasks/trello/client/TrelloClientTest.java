@@ -1,14 +1,11 @@
 package com.crud.tasks.trello.client;
 
 import com.crud.tasks.trello.config.TrelloConfig;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
-
-import java.net.URISyntaxException;
 
 @ExtendWith(MockitoExtension.class)
 class TrelloClientTest {
@@ -22,9 +19,9 @@ class TrelloClientTest {
     @Mock
     private TrelloConfig trelloConfig;
 
-    @Test
+/*    @Test
     public void shouldCreateCard() throws URISyntaxException {
-/*        // Given
+        // Given
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
@@ -53,8 +50,8 @@ class TrelloClientTest {
         // Then
         assertEquals(0, newCard.get(0).getId());
         assertEquals("test task", newCard.get(0).getName());
-        assertEquals("http://test.com", newCard.get(0).getShortUrl());                      */
-    }
+        assertEquals("http://test.com", newCard.get(0).getShortUrl());
+    }                       */
 
 /*    @Test
     public void shouldReturnEmptyList() throws URISyntaxException {

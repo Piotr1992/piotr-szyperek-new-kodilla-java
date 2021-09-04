@@ -30,6 +30,11 @@ public class TaskController {
         this.taskMapper = taskMapper;
     }
 
+/*    @RequestMapping(method = RequestMethod.GET, value = "/boards")
+    public List<TrelloBoardDto> getTrelloBoards() {
+        return trelloFacade.fetchTrelloBoards();
+    }               */
+
     @RequestMapping(method = RequestMethod.GET, value = "/boards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloFacade.fetchTrelloBoards();

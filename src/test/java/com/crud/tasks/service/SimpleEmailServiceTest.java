@@ -1,6 +1,5 @@
 package com.crud.tasks.service;
 
-
 import com.crud.tasks.domain.Mail;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +24,7 @@ class SimpleEmailServiceTest {
         Mail mail = new Mail.MailBuilder()
                 .toMail("test@test.com")
                 .ccTo("test@cc.pl")
-                .toSentDate("07-05-2021")
+//                .toSentDate("07-05-2021")
                 .toSubject("Test Subject")
                 .toMessage("Test Message")
                 .build();
@@ -34,7 +33,7 @@ class SimpleEmailServiceTest {
 
         mailMessage.setTo(mail.getMail());
         mailMessage.setCc(mail.getCC());
-        mailMessage.setSentDate(mail.getSentDate());
+//        mailMessage.setSentDate(mail.getSentDate());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 

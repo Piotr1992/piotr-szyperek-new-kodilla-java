@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -18,17 +17,21 @@ public class TrelloMapper {
     public List<TrelloBoard> mapToBoards(final List<TrelloBoardDto> trelloBoardDto) {
         return trelloBoardDto.stream()
                 .map(trelloBoard ->
-                        new TrelloBoard(trelloBoard.getId(), trelloBoard.getName(), mapToList(trelloBoard.getLists())))
+                    new TrelloBoard(trelloBoard.getId(), trelloBoard.getName(), mapToListDto(trelloBoard.getLists())))
                 .collect(toList());
     }
 
     public List<TrelloBoardDto> mapToBoardsDto(final List<TrelloBoard> trelloBoards) {
-/*        return trelloBoards.stream()
+        return trelloBoards.stream()
                 .map(trelloBoard ->
-                    new TrelloBoard(trelloBoard.getId(), trelloBoard.getName(), mapToListDto(trelloBoard.getLists())))
-                .collect(toList());                 */
-        List<TrelloBoardDto> listTrelloBoardDto = new ArrayList<>();
-        return listTrelloBoardDto;
+                    new TrelloBoardDto(trelloBoard.getId(), trelloBoard.getName(), mapToListDto(trelloBoard.getLists())))     //null))
+                .collect(toList());
+                //.collect(Collectors.toList());
+    }
+
+//    public TrelloBoard mapToBoard(final TrelloBoardDto trelloBoardDto) {
+    public TrelloBoard mapToBoard(final TrelloBoard trelloBoardDto) {
+        return new TrelloBoard(trelloBoardDto.getId(), trelloBoardDto.getName(), mapToListDto(trelloBoardDto.getLists()));
     }
 
     public List<TrelloList> mapToList(final List<TrelloListDto> trelloListDto) {
@@ -39,6 +42,7 @@ public class TrelloMapper {
 
     public List<TrelloList> mapToListDto(final List<TrelloList> trelloLists) {
         return trelloLists.stream()
+                //.map(trelloList -> new TrelloList(trelloList.getId(), trelloList.getName(), trelloList.isClosed()))
                 .map(trelloList -> new TrelloList(trelloList.getId(), trelloList.getName(), trelloList.isClosed()))
                 .collect(toList());
     }
